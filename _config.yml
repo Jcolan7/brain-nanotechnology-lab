@@ -1,0 +1,46 @@
+title: Brain Nanotechnology Lab
+description: Precision Neurosurgical Oncology
+url: https://brainnanotechnologylab.github.io
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: contrast   # try: default, dark, air, neon, etc.
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-scholar
+
+# Navigation (top menu)
+nav:
+  - title: Research
+    url: /research/
+  - title: People
+    url: /people/
+  - title: Publications
+    url: /publications/
+  - title: News
+    url: /news/
+  - title: Join
+    url: /join/
+  - title: Contact
+    url: /contact/
+
+# Collections for People and Publications
+collections:
+  people:
+    output: true
+    permalink: /people/:name/
+  publications:
+    output: true
+    permalink: /publications/:title/
+
+defaults:
+  - scope: { path: "" }
+    values: { layout: single, author_profile: false }
+
+# jekyll-scholar config (optional, for BibTeX-driven pubs)
+scholar:
+  style: apa
+  source: _publications
+  bibliography: references.bib
+  repository: ./assets/pdfs

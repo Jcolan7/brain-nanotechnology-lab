@@ -2,23 +2,40 @@ name: Build and Deploy Jekyll
 on:
   push:
     branches: ["main"]
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # Configure GitHub Pages (sets up permissions & paths)
+      - uses: actions/configure-pages@v5
+
+      # Setup Ruby + Bundler cache
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
+
+      # Build Jekyll site into _site
       - run: bundle install
-      - run: bundle exec jekyll build -d _site
+      - run: JEKYLL_ENV=production bundle exec jekyll build -d _site
+
+      # Upload the built site as an artifact for Pages to deploy
       - uses: actions/upload-pages-artifact@v3
-        with: { path: _site }
+        with:
+          path: _site
+
   deploy:
     needs: build
     runs-on: ubuntu-latest

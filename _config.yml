@@ -44,3 +44,15 @@ scholar:
   source: _publications
   bibliography: references.bib
   repository: ./assets/pdfs
+
+# Identify the repo for github-metadata
+repository: Jcolan7/brain-nanotechnology-lab
+
+# Your public site URL (change if you have a custom domain)
+url: https://Jcolan7.github.io
+
+# Base path:
+#   - If this is a *project site* (most repos): "/YOUR_REPO"
+#   - If this is a *user/org site* named YOUR_USERNAME.github.io: ""
+baseurl: "/brain-nanotechnology-lab"   # or "" for a user/organization site
+

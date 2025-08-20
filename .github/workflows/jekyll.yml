@@ -27,9 +27,11 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
-      # Build Jekyll site into _site
+      # Install deps & build
       - run: bundle install
       - run: JEKYLL_ENV=production bundle exec jekyll build -d _site
+        env:
+          JEKYLL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Upload the built site as an artifact for Pages to deploy
       - uses: actions/upload-pages-artifact@v3
